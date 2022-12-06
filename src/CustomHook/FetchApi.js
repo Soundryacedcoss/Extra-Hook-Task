@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react'
-const useFetchApi = (url) => {
-    const[data,setData]=useState(null)
-    useEffect(()=>{
-        fetch(url)
-        .then((res)=>res.json())
-        .then((val)=>setData(val))
-    },[url]);
-  return [data]
+import { useState } from "react";
+const useFetch = (url) => {
+  const [data, setData] = useState(null);
+  function extractDataFromApi(url) {
+    fetch(url)
+      .then((res) => res.json())
+      .then((val) => setData(val));
+  }
+  return { data, extractDataFromApi };
 };
-export default useFetchApi
+export default useFetch;
